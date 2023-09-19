@@ -1,6 +1,6 @@
-#include <vector>
 #include "RGBA_TO_RGB.H"
 
+#include <vector>
 #include <algorithm>
 #include <cmath>
 
@@ -43,9 +43,7 @@ void rgba_to_rgb(
       //notice how there is no space for the 4th channel in rgb image, and so we don't copy it over.
       //4th channel would be the alpha channel in this case 
 
-    };
+    }
   }
-  
-
   ////////////////////////////////////////////////////////////////////////////
 }
