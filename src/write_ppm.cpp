@@ -35,10 +35,10 @@ bool write_ppm(
     }
 
     //based on width and height
-    ppmFile << width << " " << height << std::endl;
+    //ppmFile << width << " " << height << std::endl;
 
     //maximum intensity val
-    ppmFile << str(width*height*num_channels) << std::endl;
+    //ppmFile << str(width*height*num_channels) << std::endl;
 
   //write data to file
     for (int w=0; w<width; w++){
