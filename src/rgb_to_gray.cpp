@@ -1,5 +1,7 @@
 #include "rgb_to_gray.h"
 
+#include <vector>
+
 void rgb_to_gray(
   const std::vector<unsigned char> & rgb,
   const int width,
@@ -9,6 +11,19 @@ void rgb_to_gray(
   gray.resize(height*width);
   ////////////////////////////////////////////////////////////////////////////
   // Add your code here
+
+  //we can convert rgb image to grayscale by averaging rgb channels for each pixel
+  for (int row=0; row<height; row++){
+    for (int col=0; col<width; col++){
+      int gray_pixel = (row*width + col); 
+      int rgb_pixel = gray_pixel * 3; //index value accounting the number of channels for rgb img (3)
+      
+      //average the rgb channels of rgb img
+
+      //cast the averaged value of rgb img into grayscale index for grayscale img
+    }
+  }
+
   ////////////////////////////////////////////////////////////////////////////
 }
 
