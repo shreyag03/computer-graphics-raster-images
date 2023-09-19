@@ -19,8 +19,19 @@ void rgb_to_gray(
       int rgb_pixel = gray_pixel * 3; //index value accounting the number of channels for rgb img (3)
       
       //average the rgb channels of rgb img
+        //blue -> channel = 0
+        int b_pixel = rgb[rgb_pixel + 0];
+        //green -> channel 1
+        int g_pixel = rgb[rgb_pixel + 1];
+        //red -> channel 2
+        int r_pixel = rgb[rgb_pixel + 2];
 
-      //cast the averaged value of rgb img into grayscale index for grayscale img
+        //weighted average of rgb (numbers from tutorial)
+        double avg = 0.2126*double((r_pixel)) + 0.7152*(double(g_pixel)) + 0.0722*(double(b_pixel));
+
+      //cast this avg of rgb img into the gray_pixel index for grayscale img
+      gray[gray_pixel] = avg;
+
     }
   }
 
