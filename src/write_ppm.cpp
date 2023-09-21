@@ -44,7 +44,7 @@ bool write_ppm(
     for (int w=0; w<width; w++){
       for (int h=0; h<height; h++){
         for (int c=0; c<num_channels; c++){
-          ind = (h*width + w) * c;
+          int ind = (h*width + w) * c;
           if (c>0){ //if more than 1 channel, then give space between writing
             ppmFile << " ";
           }
