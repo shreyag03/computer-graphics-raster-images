@@ -17,4 +17,4 @@ void demosaic(
   const int & width,
   const int & height,
   std::vector<unsigned char> & rgb);
-#endif 
+#endif

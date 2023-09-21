@@ -26,7 +26,7 @@ void simulate_bayer_mosaic(
 
 
   //to create the bayer mosaic with specified GBRG shape above, we are going to use following variables
-  unsigned char r_pixel, g_pixel, b_pixel; double avg; int r_channel, g_channel, b_channel;
+  unsigned char r_pixel, g_pixel, b_pixel; double avg;
 
   for (int row=0; row<height; row++){
     for (int col=0; col<width; col++){
@@ -45,27 +45,26 @@ void simulate_bayer_mosaic(
       //For the pixel in this (row, col) coordinate, determine which channel it belongs to regarding the GBRG pattern. We will use pixel_ind
         //even row, even col
         if (((row%2)==0)&&((col%2)==0)){
-            //green channel(G) => average calculated normally
-            //weighted average of rgb (numbers from tutorial) for grayscale => emphasis given to g
-            avg = 0.2126*(static_cast<double>(r_pixel)) + 0.7152*(static_cast<double>(g_pixel)) + 0.0722*(static_cast<double>(b_pixel));
+            //green channel #1 (G) => change to blue => emphasis on blue
+            //weighted average of rgb (numbers from tutorial) for grayscale
+            avg = 0.2126*(static_cast<double>(r_pixel)) + 0.7152*(static_cast<double>(b_pixel)) + 0.0722*(static_cast<double>(g_pixel));
         }//even row, odd col
         else if (((row%2)==0)&&((col%2)==1)){
-            //blue channel(B) => average calculated with emphasis on blue
-            //weighted average of rgb (numbers from tutorial) for grayscale => emphasis given to g
-            avg = 0.2126*(static_cast<double>(r_pixel)) + 0.7152*(static_cast<double>(b_pixel)) + 0.0722*(static_cast<double>(g_pixel)); //green subsituted by blue
+            //blue channel(B) => change to green => emphasis on green
+            //weighted average of rgb (numbers from tutorial) for grayscale
+            avg = 0.2126*(static_cast<double>(r_pixel)) + 0.7152*(static_cast<double>(g_pixel)) + 0.0722*(static_cast<double>(b_pixel)); //green subsituted by blue
         }//odd row, even col
         else if (((row%2)==1)&&((col%2)==0)){
-            //red channel (R) => average calculated with emphasis on red
-            //weighted average of rgb (numbers from tutorial) for grayscale => emphasis given to g
-            avg = 0.2126*(static_cast<double>(g_pixel)) + 0.7152*(static_cast<double>(r_pixel)) + 0.0722*(static_cast<double>(b_pixel)); //red substituted by green
+            //red channel (R) => change to green => emphasis on green
+            //weighted average of rgb (numbers from tutorial) for grayscale
+            avg = 0.2126*(static_cast<double>(r_pixel)) + 0.7152*(static_cast<double>(g_pixel)) + 0.0722*(static_cast<double>(b_pixel)); //red substituted by green
         }//odd row, odd col
         else{
-            //weighted average of rgb (numbers from tutorial) for grayscale => emphasis given to g
-            avg = 0.2126*(static_cast<double>(r_pixel)) + 0.7152*(static_cast<double>(g_pixel)) + 0.0722*(static_cast<double>(b_pixel));
-            //green channel (G) => average calculated normally
+            //green channel #2 (G) => change to red => emphasis on red
+            //weighted average of rgb (numbers from tutorial) for grayscale
+            avg = 0.2126*(static_cast<double>(g_pixel)) + 0.7152*(static_cast<double>(r_pixel)) + 0.0722*(static_cast<double>(b_pixel));
         }
-
-        bayer[pixel_ind] = avg;
+        bayer[pixel_ind] = avg; //cast the average calculated to the corresponding pixel index at bayer
     }
   }
 
