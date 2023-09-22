@@ -1,4 +1,4 @@
-#include "RGBA_TO_RGB.H"
+#include "rgba_to_rgb.h"
 
 #include <vector>
 #include <algorithm>
