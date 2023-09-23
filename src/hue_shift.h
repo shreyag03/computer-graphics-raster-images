@@ -16,4 +16,5 @@ void hue_shift(
   const int height,
   const double shift,
   std::vector<unsigned char> & shifted);
+  
 #endif
