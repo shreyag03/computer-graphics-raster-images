@@ -39,7 +39,7 @@ void hue_shift(
 
   //now, we are going to extract the values of r g and b channels for each pixel
     //following steps will be carried out with the help of the variables defined in the next line
-    int pixel_ind; double red, green, blue, hue, sat, val;
+    int pixel_ind; double red, green, blue, hue, sat, val, new_red, new_green, new_blue;
     //1. loop through rgb image for each pixel
     //2. extract r g and b channels
     //3. convert the r g and b channels into hsv
@@ -71,12 +71,12 @@ void hue_shift(
           //we don't need an else statement, as that means that hue is already defined as to be in the correct range
         
         //step 5
-        hsv_to_rgb(hue, sat, val, red, green, blue); //red green and blue are now returned properly with the adjusted hue into red green and blue channel variabels respectively
+        hsv_to_rgb(hue, sat, val, new_red, new_green, new_blue); //red green and blue are now returned properly with the adjusted hue into red green and blue channel variabels respectively
 
         //step 6
-        shifted[pixel_ind*3 + 0] = red;
-        shifted[pixel_ind*3 + 1] = green;
-        shifted[pixel_ind*3 + 2] = blue;
+        shifted[pixel_ind*3 + 0] = static_cast<unsigned char>(new_red);
+        shifted[pixel_ind*3 + 1] = static_cast<unsigned char>(new_green);
+        shifted[pixel_ind*3 + 2] = static_cast<unsigned char>(new_blue);
 
       }
     }
