@@ -46,10 +46,10 @@ void desaturate(
     for (int row=0; row<height; row++){
       for (int col=0; col<width; col++){
         //step 2
-        pixel_ind = row*width + col;
-        red = static_cast<double>(rgb[pixel_ind*3 + 0]);
-        green = static_cast<double>(rgb[pixel_ind*3 + 1]);
-        blue = static_cast<double>(rgb[pixel_ind*3 + 2]);
+        pixel_ind = (row*width + col)*3;
+        red = static_cast<double>(rgb[pixel_ind + 0]);
+        green = static_cast<double>(rgb[pixel_ind + 1]);
+        blue = static_cast<double>(rgb[pixel_ind + 2]);
 
         //step 3
         rgb_to_hsv(red, green, blue, hue, sat, val); //hue sat and val returned in h s and v values in the function
@@ -62,13 +62,14 @@ void desaturate(
         hsv_to_rgb(hue, sat, val, new_red, new_green, new_blue); //red green and blue are now returned properly with the adjusted hue into red green and blue channel variabels respectively
 
         //step 6
-        desaturated[pixel_ind*3 + 0] = static_cast<unsigned char>(new_red);
-        desaturated[pixel_ind*3 + 1] = static_cast<unsigned char>(new_green);
-        desaturated[pixel_ind*3 + 2] = static_cast<unsigned char>(new_blue);
+        desaturated[pixel_ind + 0] = static_cast<unsigned char>(new_red);
+        desaturated[pixel_ind + 1] = static_cast<unsigned char>(new_green);
+        desaturated[pixel_ind + 2] = static_cast<unsigned char>(new_blue);
 
       }
     }
 
+    //function done
 
   ////////////////////////////////////////////////////////////////////////////
 }
